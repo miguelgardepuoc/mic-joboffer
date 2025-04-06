@@ -1,0 +1,40 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: mic-joboffer
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/JOB_OFFER
+    username: myuser
+    password: mypassword
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 30000
+      connection-timeout: 30000
+      max-lifetime: 1800000
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    format_sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  jms:
+    broker-url: ${SPRING_JMS_BROKER_URL}
+    user: ${SPRING_JMS_USER}
+    password: ${SPRING_JMS_PASSWORD}
+producer:
+  event:
+    host: ${PRODUCER_ARTEMIS_HOST:localhost}
+    port: ${PRODUCER_ARTEMIS_PORT:61616}
+    user: ${PRODUCER_ARTEMIS_USER:admin}
+    password: ${PRODUCER_ARTEMIS_PASSWORD:admin}
+  topic:
+    name: ${PRODUCER_TOPIC_NAME:test-topic}
