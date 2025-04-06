@@ -2,7 +2,6 @@ package com.antharos.joboffer.infrastructure.repository.joboffer;
 
 import com.antharos.joboffer.domain.joboffer.JobOffer;
 import com.antharos.joboffer.domain.joboffer.JobOfferId;
-import com.antharos.joboffer.domain.joboffer.Salary;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,8 +10,10 @@ public class JobOfferMapper {
   public JobOffer toDomain(JobOfferEntity entity) {
     return new JobOffer(
         JobOfferId.of(entity.getId().toString()),
+        entity.getJobTitleId(),
         entity.getDescription(),
-        new Salary(entity.getSalary()),
+        entity.getSalaryRange().toDomain(),
+        entity.getPhoto(),
         entity.getRemote().floatValue(),
         entity.getRequirement(),
         entity.isActive(),

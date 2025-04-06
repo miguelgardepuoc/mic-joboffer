@@ -1,6 +1,7 @@
 package com.antharos.joboffer.domain.joboffer;
 
 import java.util.Date;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -12,9 +13,13 @@ public class JobOffer {
 
   private final JobOfferId id;
 
+  private UUID jobTitleId;
+
   private String description;
 
-  private Salary salary;
+  private SalaryRange salaryRange;
+
+  private byte[] photo;
 
   private Float remote;
 

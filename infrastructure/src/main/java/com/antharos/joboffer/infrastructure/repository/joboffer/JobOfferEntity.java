@@ -2,9 +2,10 @@ package com.antharos.joboffer.infrastructure.repository.joboffer;
 
 import com.antharos.joboffer.infrastructure.repository.candidate.CandidateEntity;
 import jakarta.persistence.*;
-import java.math.BigDecimal;
+import java.sql.Types;
 import java.util.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
 
 @Entity
 @Table(name = "job_offer")
@@ -25,8 +26,7 @@ public class JobOfferEntity {
   @Column(name = "description", nullable = false)
   private String description;
 
-  @Column(name = "salary", nullable = false)
-  private BigDecimal salary;
+  @Embedded private SalaryRangeEmbeddable salaryRange;
 
   @Column(name = "remote", nullable = false)
   private Short remote; // 0–100 representation
@@ -36,6 +36,7 @@ public class JobOfferEntity {
 
   @Lob
   @Column(name = "photo", nullable = false)
+  @JdbcTypeCode(Types.BINARY)
   private byte[] photo;
 
   @Column(name = "is_active", nullable = false)
