@@ -1,11 +1,13 @@
 package com.antharos.joboffer.domain.joboffer;
 
 import java.util.Date;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @Getter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@AllArgsConstructor
 public class JobOffer {
 
   private final JobOfferId id;

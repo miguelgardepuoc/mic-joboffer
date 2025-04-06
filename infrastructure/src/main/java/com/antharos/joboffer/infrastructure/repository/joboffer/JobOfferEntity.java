@@ -1,13 +1,10 @@
 package com.antharos.joboffer.infrastructure.repository.joboffer;
 
+import com.antharos.joboffer.infrastructure.repository.candidate.CandidateEntity;
 import jakarta.persistence.*;
-import jakarta.persistence.Id;
-import java.util.Date;
-import java.util.UUID;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.math.BigDecimal;
+import java.util.*;
+import lombok.*;
 
 @Entity
 @Table(name = "job_offer")
@@ -15,32 +12,47 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class JobOfferEntity {
 
-  @Id private UUID id;
+  @Id
+  @Column(name = "id", nullable = false)
+  private UUID id;
 
-  @Column(nullable = false)
+  @Column(name = "job_title_id", nullable = false)
+  private UUID jobTitleId;
+
+  @Column(name = "description", nullable = false)
   private String description;
 
-  @Column(nullable = false)
+  @Column(name = "salary", nullable = false)
+  private BigDecimal salary;
+
+  @Column(name = "remote", nullable = false)
+  private Short remote; // 0–100 representation
+
+  @Column(name = "requirement", nullable = false)
+  private String requirement;
+
+  @Lob
+  @Column(name = "photo", nullable = false)
+  private byte[] photo;
+
+  @Column(name = "is_active", nullable = false)
+  private boolean isActive;
+
+  @Column(name = "created_by", nullable = false)
   private String createdBy;
 
-  @Temporal(TemporalType.TIMESTAMP)
-  @Column(nullable = false, updatable = false)
+  @Column(name = "created_at", nullable = false)
   private Date createdAt;
 
+  @Column(name = "last_modified_by")
   private String lastModifiedBy;
 
-  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "last_modified_at")
   private Date lastModifiedAt;
 
-  @PrePersist
-  protected void onCreate() {
-    createdAt = new Date();
-  }
-
-  @PreUpdate
-  protected void onUpdate() {
-    lastModifiedAt = new Date();
-  }
+  @OneToMany(mappedBy = "jobOffer", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<CandidateEntity> candidates = new ArrayList<>();
 }
