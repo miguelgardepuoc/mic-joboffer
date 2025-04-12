@@ -1,7 +1,7 @@
 services:
   db:
     image: postgres:latest
-    container_name: postgres-db
+    container_name: postgres-db-job-offer
     environment:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
@@ -16,7 +16,7 @@ services:
 
   activemq-artemis:
     image: apache/activemq-artemis:latest
-    container_name: activemq-artemis
+    container_name: activemq-artemis-job-offer
     ports:
       - "61616:61616"  # Puerto JMS
       - "8161:8161"    # Consola web

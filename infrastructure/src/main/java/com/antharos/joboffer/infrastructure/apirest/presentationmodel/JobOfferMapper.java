@@ -19,4 +19,8 @@ public interface JobOfferMapper {
   default UUID map(JobOfferId id) {
     return id == null ? null : UUID.fromString(id.getValueAsString());
   }
+
+  @Mapping(source = "salaryRange.min", target = "minSalary")
+  @Mapping(source = "salaryRange.max", target = "maxSalary")
+  JobOfferResponse toJobOfferResponse(JobOffer jobOffer);
 }

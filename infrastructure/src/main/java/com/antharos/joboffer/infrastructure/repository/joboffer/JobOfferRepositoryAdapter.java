@@ -3,6 +3,8 @@ package com.antharos.joboffer.infrastructure.repository.joboffer;
 import com.antharos.joboffer.domain.joboffer.JobOffer;
 import com.antharos.joboffer.domain.joboffer.repository.JobOfferRepository;
 import java.util.List;
+import java.util.UUID;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -19,4 +21,12 @@ public class JobOfferRepositoryAdapter implements JobOfferRepository {
         .map(this.jobOfferMapper::toDomain)
         .toList();
   }
+
+  @Override
+  public JobOffer findById(final UUID id) {
+    return this.jpaJobOfferRepository.findById(id)
+            .map(this.jobOfferMapper::toDomain)
+            .orElse(null);
+  }
+
 }
