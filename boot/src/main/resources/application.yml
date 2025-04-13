@@ -3,7 +3,9 @@ server:
 spring:
   application:
     name: mic-joboffer
-
+  mvc:
+    servlet:
+      path: /job-offer
   datasource:
     url: jdbc:postgresql://localhost:5432/JOB_OFFER
     username: myuser

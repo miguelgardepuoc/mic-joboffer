@@ -1,10 +1,11 @@
 package com.antharos.joboffer.infrastructure.repository.joboffer;
 
 import com.antharos.joboffer.domain.joboffer.JobOffer;
+import com.antharos.joboffer.domain.joboffer.JobOfferId;
 import com.antharos.joboffer.domain.joboffer.repository.JobOfferRepository;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -13,20 +14,19 @@ import org.springframework.stereotype.Repository;
 public class JobOfferRepositoryAdapter implements JobOfferRepository {
 
   private final JpaJobOfferRepository jpaJobOfferRepository;
-  private final JobOfferMapper jobOfferMapper;
+  private final JobOfferMapper mapper;
 
   @Override
   public List<JobOffer> findAllActive() {
     return this.jpaJobOfferRepository.findAllByIsActiveTrue().stream()
-        .map(this.jobOfferMapper::toDomain)
+        .map(this.mapper::toDomain)
         .toList();
   }
 
   @Override
-  public JobOffer findById(final UUID id) {
-    return this.jpaJobOfferRepository.findById(id)
-            .map(this.jobOfferMapper::toDomain)
-            .orElse(null);
+  public Optional<JobOffer> findById(final JobOfferId jobOfferId) {
+    return this.jpaJobOfferRepository
+        .findById(UUID.fromString(jobOfferId.getValueAsString()))
+        .map(this.mapper::toDomain);
   }
-
 }

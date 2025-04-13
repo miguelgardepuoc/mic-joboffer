@@ -9,7 +9,6 @@ import com.antharos.joboffer.infrastructure.apirest.presentationmodel.JobOfferRe
 import com.antharos.joboffer.infrastructure.apirest.presentationmodel.SimpleJobOffer;
 import java.util.List;
 import java.util.UUID;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,5 +41,4 @@ public class JobOfferController {
 
     return ResponseEntity.ok(this.mapper.toJobOfferResponse(jobOffer));
   }
-
 }

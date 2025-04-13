@@ -1,11 +1,13 @@
 package com.antharos.joboffer.domain.joboffer.repository;
 
 import com.antharos.joboffer.domain.joboffer.JobOffer;
+import com.antharos.joboffer.domain.joboffer.JobOfferId;
 import java.util.List;
-import java.util.UUID;
+import java.util.Optional;
 
 public interface JobOfferRepository {
 
   List<JobOffer> findAllActive();
-  JobOffer findById(UUID id);
+
+  Optional<JobOffer> findById(JobOfferId jobOfferId);
 }

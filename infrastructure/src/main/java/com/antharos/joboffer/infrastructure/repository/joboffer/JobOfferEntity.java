@@ -2,10 +2,8 @@ package com.antharos.joboffer.infrastructure.repository.joboffer;
 
 import com.antharos.joboffer.infrastructure.repository.candidate.CandidateEntity;
 import jakarta.persistence.*;
-import java.sql.Types;
 import java.util.*;
 import lombok.*;
-import org.hibernate.annotations.JdbcTypeCode;
 
 @Entity
 @Table(name = "job_offer")
@@ -23,7 +21,7 @@ public class JobOfferEntity {
   @Column(name = "job_title_id", nullable = false)
   private UUID jobTitleId;
 
-  @Column(name = "description", nullable = false)
+  @Column(name = "description", nullable = false, columnDefinition = "TEXT")
   private String description;
 
   @Embedded private SalaryRangeEmbeddable salaryRange;
@@ -31,13 +29,8 @@ public class JobOfferEntity {
   @Column(name = "remote", nullable = false)
   private Short remote; // 0–100 representation
 
-  @Column(name = "requirement", nullable = false)
+  @Column(name = "requirement", nullable = false, columnDefinition = "TEXT")
   private String requirement;
-
-  @Lob
-  @Column(name = "photo", nullable = false)
-  @JdbcTypeCode(Types.BINARY)
-  private byte[] photo;
 
   @Column(name = "is_active", nullable = false)
   private boolean isActive;
@@ -56,4 +49,8 @@ public class JobOfferEntity {
 
   @OneToMany(mappedBy = "jobOffer", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<CandidateEntity> candidates = new ArrayList<>();
+
+  public JobOfferEntity(UUID id) {
+    this.id = id;
+  }
 }

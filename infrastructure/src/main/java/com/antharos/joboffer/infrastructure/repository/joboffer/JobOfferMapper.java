@@ -13,7 +13,6 @@ public class JobOfferMapper {
         entity.getJobTitleId(),
         entity.getDescription(),
         entity.getSalaryRange().toDomain(),
-        entity.getPhoto(),
         entity.getRemote().floatValue(),
         entity.getRequirement(),
         entity.isActive(),

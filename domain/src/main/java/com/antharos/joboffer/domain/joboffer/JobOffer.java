@@ -19,8 +19,6 @@ public class JobOffer {
 
   private SalaryRange salaryRange;
 
-  private byte[] photo;
-
   private Float remote;
 
   private String requirement;

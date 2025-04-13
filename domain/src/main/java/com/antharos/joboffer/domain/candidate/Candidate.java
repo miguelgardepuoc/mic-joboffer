@@ -1,5 +1,8 @@
 package com.antharos.joboffer.domain.candidate;
 
+import static com.antharos.joboffer.domain.candidate.CandidateStatus.APPLIED;
+
+import com.antharos.joboffer.domain.joboffer.JobOfferId;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -12,9 +15,9 @@ public class Candidate {
 
   private CandidateId id;
 
-  private String personalEmail;
+  private PersonalEmail personalEmail;
 
-  private String cv;
+  private String cvUrl;
 
   private Name name;
 
@@ -22,7 +25,7 @@ public class Candidate {
 
   private TelephoneNumber telephoneNumber;
 
-  private Status status;
+  private CandidateStatus status;
 
   private String createdBy;
 
@@ -32,7 +35,33 @@ public class Candidate {
 
   private Date lastModifiedAt;
 
+  private JobOfferId jobOfferId;
+
   public Candidate(CandidateId id) {
     this.id = id;
+  }
+
+  public Candidate(
+      CandidateId candidateId,
+      PersonalEmail personalEmail,
+      String cvUrl,
+      CandidateStatus status,
+      JobOfferId jobOfferId,
+      String createdBy) {
+    this.id = candidateId;
+    this.personalEmail = personalEmail;
+    this.cvUrl = cvUrl;
+    this.status = status;
+    this.jobOfferId = jobOfferId;
+    this.createdBy = createdBy;
+  }
+
+  public static Candidate create(
+      CandidateId candidateId,
+      PersonalEmail personalEmail,
+      String cv,
+      JobOfferId jobOfferId,
+      String createdBy) {
+    return new Candidate(candidateId, personalEmail, cv, APPLIED, jobOfferId, createdBy);
   }
 }

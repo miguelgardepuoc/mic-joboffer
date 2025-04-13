@@ -28,10 +28,10 @@ public class CandidateEntity {
   private CandidateStatus status;
 
   @Column(name = "personal_email", nullable = false)
-  private Long personalEmail;
+  private String personalEmail;
 
   @Column(name = "cv", nullable = false)
-  private Long cv;
+  private String cvUrl;
 
   @Column(name = "name")
   private String name;
@@ -39,8 +39,8 @@ public class CandidateEntity {
   @Column(name = "surname")
   private String surname;
 
-  @Column(name = "phone_number")
-  private Long phoneNumber;
+  @Column(name = "phone_number", length = 20)
+  private String phoneNumber;
 
   @Column(name = "created_by", nullable = false)
   private String createdBy;
@@ -53,4 +53,9 @@ public class CandidateEntity {
 
   @Column(name = "last_modified_at")
   private Date lastModifiedAt;
+
+  @PrePersist
+  protected void onCreate() {
+    createdAt = new Date();
+  }
 }
