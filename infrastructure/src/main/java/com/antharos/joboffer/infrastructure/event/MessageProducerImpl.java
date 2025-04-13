@@ -2,7 +2,7 @@ package com.antharos.joboffer.infrastructure.event;
 
 import com.antharos.joboffer.domain.candidate.Candidate;
 import com.antharos.joboffer.domain.candidate.repository.MessageProducer;
-import com.antharos.joboffer.infrastructure.event.model.CandidateSignedUpDomainMessage;
+import com.antharos.joboffer.infrastructure.event.model.CandidateAppliedDomainMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.jms.ConnectionFactory;
 import jakarta.jms.JMSContext;
@@ -32,8 +32,8 @@ public class MessageProducerImpl implements MessageProducer {
     try (JMSContext context = this.producerConnectionFactory.createContext()) {
       final Topic topic = context.createTopic(this.topicName);
 
-      final CandidateSignedUpDomainMessage message =
-          new CandidateSignedUpDomainMessage(id.toString(), subject, candidate);
+      final CandidateAppliedDomainMessage message =
+          new CandidateAppliedDomainMessage(id.toString(), subject, candidate);
 
       final String messageJson = this.objectMapper.writeValueAsString(message);
 
@@ -46,8 +46,8 @@ public class MessageProducerImpl implements MessageProducer {
   }
 
   @Override
-  public void sendUserHiredMessage(Candidate candidate) {
+  public void sendCandidateApplied(Candidate candidate) {
     this.sendMessage(
-        UUID.fromString(candidate.getId().getValueAsString()), "CANDIDATE_SIGNED_UP", candidate);
+            UUID.fromString(candidate.getId().getValueAsString()), "CANDIDATE_APPLIED", candidate);
   }
 }

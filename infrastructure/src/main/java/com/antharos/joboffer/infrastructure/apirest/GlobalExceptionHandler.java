@@ -1,6 +1,7 @@
 package com.antharos.joboffer.infrastructure.apirest;
 
 import com.antharos.joboffer.domain.globalexceptions.AlreadyExistsException;
+import com.antharos.joboffer.domain.globalexceptions.ConflictException;
 import com.antharos.joboffer.domain.globalexceptions.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -22,5 +23,11 @@ public class GlobalExceptionHandler {
   public ResponseEntity<String> handleAlreadyExistsException(AlreadyExistsException ex) {
     log.warn("Resource already exists exception thrown: ", ex);
     return new ResponseEntity<>("Resource already exists: " + ex.getMessage(), HttpStatus.CONFLICT);
+  }
+
+  @ExceptionHandler(ConflictException.class)
+  public ResponseEntity<String> handleConflictException(ConflictException ex) {
+    log.warn("Conflict exception thrown: ", ex);
+    return new ResponseEntity<>("Conflict: " + ex.getMessage(), HttpStatus.CONFLICT);
   }
 }

@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
-public class CandidateSignedUpDomainMessage extends BaseMessage<Candidate> {
+public class CandidateAppliedDomainMessage extends BaseMessage<Candidate> {
 
-  public CandidateSignedUpDomainMessage(String id, String subject, Candidate content) {
+  public CandidateAppliedDomainMessage(String id, String subject, Candidate content) {
     super(id, subject, content);
   }
 }

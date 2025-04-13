@@ -1,12 +1,13 @@
 package com.antharos.joboffer.domain.candidate;
 
-import static com.antharos.joboffer.domain.candidate.CandidateStatus.APPLIED;
-
+import com.antharos.joboffer.domain.globalexceptions.ConflictException;
 import com.antharos.joboffer.domain.joboffer.JobOfferId;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+
+import static com.antharos.joboffer.domain.candidate.CandidateStatus.*;
 
 @Getter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -63,5 +64,32 @@ public class Candidate {
       JobOfferId jobOfferId,
       String createdBy) {
     return new Candidate(candidateId, personalEmail, cv, APPLIED, jobOfferId, createdBy);
+  }
+
+  public void reject(String byUser) {
+    if (HIRED.equals(this.status) || REJECTED.equals(this.status)) {
+      throw new ConflictException();
+    }
+    this.status = REJECTED;
+    this.lastModifiedAt = new Date();
+    this.lastModifiedBy = byUser;
+  }
+
+  public void interview(String byUser) {
+    if (HIRED.equals(this.status) || REJECTED.equals(this.status) || INTERVIEWING.equals(this.status)) {
+      throw new ConflictException();
+    }
+    this.status = INTERVIEWING;
+    this.lastModifiedAt = new Date();
+    this.lastModifiedBy = byUser;
+  }
+
+  public void hire(String byUser) {
+    if (HIRED.equals(this.status) || REJECTED.equals(this.status)) {
+      throw new ConflictException();
+    }
+    this.status = HIRED;
+    this.lastModifiedAt = new Date();
+    this.lastModifiedBy = byUser;
   }
 }

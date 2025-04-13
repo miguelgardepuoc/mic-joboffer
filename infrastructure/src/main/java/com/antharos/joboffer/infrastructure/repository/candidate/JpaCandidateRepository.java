@@ -9,4 +9,7 @@ public interface JpaCandidateRepository extends JpaRepository<CandidateEntity, U
   List<CandidateEntity> findAll();
 
   Optional<CandidateEntity> findByPersonalEmail(String personalEmail);
+
+  List<CandidateEntity> findByJobOffer_Id(UUID jobOfferId);
+
 }

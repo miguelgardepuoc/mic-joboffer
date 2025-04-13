@@ -37,4 +37,9 @@ public class CandidateRepositoryAdapter implements CandidateRepository {
   public Optional<Candidate> findByPersonalEmail(String personalEmail) {
     return this.jpaRepository.findByPersonalEmail(personalEmail).map(this.mapper::toDomain);
   }
+
+  @Override
+  public List<Candidate> findByJobOfferId(UUID jobOfferId) {
+    return this.jpaRepository.findByJobOffer_Id(jobOfferId).stream().map(this.mapper::toDomain).toList();
+  }
 }

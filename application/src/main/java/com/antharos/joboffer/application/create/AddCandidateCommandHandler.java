@@ -5,6 +5,7 @@ import com.antharos.joboffer.domain.candidate.CandidateAlreadyExists;
 import com.antharos.joboffer.domain.candidate.CandidateId;
 import com.antharos.joboffer.domain.candidate.PersonalEmail;
 import com.antharos.joboffer.domain.candidate.repository.CandidateRepository;
+import com.antharos.joboffer.domain.candidate.repository.MessageProducer;
 import com.antharos.joboffer.domain.joboffer.JobOffer;
 import com.antharos.joboffer.domain.joboffer.JobOfferId;
 import com.antharos.joboffer.domain.joboffer.JobOfferNotFoundException;
@@ -19,6 +20,7 @@ public class AddCandidateCommandHandler {
 
   private final CandidateRepository candidateRepository;
   private final JobOfferRepository jobOfferRepository;
+  private final MessageProducer messageProducer;
 
   public void doHandle(final AddCandidateCommand command) {
 
@@ -50,5 +52,6 @@ public class AddCandidateCommandHandler {
             command.getCreatedBy());
 
     this.candidateRepository.saveCandidate(newCandidate);
+    this.messageProducer.sendCandidateApplied(newCandidate);
   }
 }
