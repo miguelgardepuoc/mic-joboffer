@@ -1,26 +1,29 @@
 package com.antharos.joboffer.infrastructure.apirest;
 
+import com.antharos.joboffer.application.create.AddJobOfferCommand;
+import com.antharos.joboffer.application.create.AddJobOfferCommandHandler;
 import com.antharos.joboffer.application.find.FindJobOfferQuery;
 import com.antharos.joboffer.application.find.FindJobOfferQueryHandler;
 import com.antharos.joboffer.application.find.FindJobOffersQuery;
 import com.antharos.joboffer.application.find.FindJobOffersQueryHandler;
-import com.antharos.joboffer.infrastructure.apirest.presentationmodel.JobOfferMapper;
-import com.antharos.joboffer.infrastructure.apirest.presentationmodel.JobOfferResponse;
-import com.antharos.joboffer.infrastructure.apirest.presentationmodel.SimpleJobOffer;
+import com.antharos.joboffer.infrastructure.apirest.presentationmodel.*;
+
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/job-offers")
+@RequestMapping("/job-offers")
 @RequiredArgsConstructor
 public class JobOfferController {
 
   private final FindJobOffersQueryHandler findJobOffersQueryHandler;
-
   private final FindJobOfferQueryHandler findJobOfferQueryHandler;
+
+  private final AddJobOfferCommandHandler addJobOfferCommandHandler;
 
   private final JobOfferMapper mapper;
 
@@ -40,5 +43,23 @@ public class JobOfferController {
     }
 
     return ResponseEntity.ok(this.mapper.toJobOfferResponse(jobOffer));
+  }
+
+  @PostMapping
+  public ResponseEntity<Void> addJobOffer(@RequestBody AddJobOfferRequest request) {
+    AddJobOfferCommand command =
+            AddJobOfferCommand.builder()
+                    .id(request.getId())
+                    .jobTitleId(request.getJobTitleId())
+                    .description(request.getDescription())
+                    .remote(request.getRemote())
+                    .requirement(request.getRequirement())
+                    .minSalary(request.getMinSalary())
+                    .maxSalary(request.getMaxSalary())
+                    .createdBy("admin")
+                    .build();
+
+    this.addJobOfferCommandHandler.doHandle(command);
+    return new ResponseEntity<>(HttpStatus.CREATED);
   }
 }

@@ -19,7 +19,7 @@ public class JobOffer {
 
   private SalaryRange salaryRange;
 
-  private Float remote;
+  private short remote;
 
   private String requirement;
 
@@ -33,7 +33,7 @@ public class JobOffer {
 
   private Date lastModifiedAt;
 
-  public JobOffer(JobOfferId id) {
-    this.id = id;
+  public static JobOffer create(JobOfferId id, UUID jobTitleId, String description, SalaryRange salaryRange, short remote, String requirement, String createdBy) {
+    return new JobOffer(id, jobTitleId, description, salaryRange, remote,requirement, true, createdBy, new Date(), null, null);
   }
 }

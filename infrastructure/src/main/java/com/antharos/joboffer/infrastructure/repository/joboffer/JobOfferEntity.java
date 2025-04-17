@@ -27,7 +27,7 @@ public class JobOfferEntity {
   @Embedded private SalaryRangeEmbeddable salaryRange;
 
   @Column(name = "remote", nullable = false)
-  private Short remote; // 0–100 representation
+  private short remote; // 0–100 representation
 
   @Column(name = "requirement", nullable = false, columnDefinition = "TEXT")
   private String requirement;

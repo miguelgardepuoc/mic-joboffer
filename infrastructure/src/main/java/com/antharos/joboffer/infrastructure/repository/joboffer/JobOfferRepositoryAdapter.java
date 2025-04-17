@@ -13,20 +13,25 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 public class JobOfferRepositoryAdapter implements JobOfferRepository {
 
-  private final JpaJobOfferRepository jpaJobOfferRepository;
+  private final JpaJobOfferRepository jpaRepository;
   private final JobOfferMapper mapper;
 
   @Override
   public List<JobOffer> findAllActive() {
-    return this.jpaJobOfferRepository.findAllByIsActiveTrue().stream()
+    return this.jpaRepository.findAllByIsActiveTrue().stream()
         .map(this.mapper::toDomain)
         .toList();
   }
 
   @Override
   public Optional<JobOffer> findById(final JobOfferId jobOfferId) {
-    return this.jpaJobOfferRepository
+    return this.jpaRepository
         .findById(UUID.fromString(jobOfferId.getValueAsString()))
         .map(this.mapper::toDomain);
+  }
+
+  @Override
+  public void save(JobOffer jobOffer) {
+    this.jpaRepository.save(this.mapper.toEntity(jobOffer));
   }
 }

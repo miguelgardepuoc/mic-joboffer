@@ -10,4 +10,6 @@ public interface JobOfferRepository {
   List<JobOffer> findAllActive();
 
   Optional<JobOffer> findById(JobOfferId jobOfferId);
+
+  void save(JobOffer jobOffer);
 }
