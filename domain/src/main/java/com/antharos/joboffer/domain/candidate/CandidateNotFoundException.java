@@ -1,7 +1,6 @@
 package com.antharos.joboffer.domain.candidate;
 
 import com.antharos.joboffer.domain.globalexceptions.NotFoundException;
-
 import java.util.UUID;
 
 public class CandidateNotFoundException extends NotFoundException {

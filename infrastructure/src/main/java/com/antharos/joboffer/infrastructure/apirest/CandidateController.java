@@ -8,17 +8,16 @@ import com.antharos.joboffer.application.find.FindCandidatesByJobOfferQuery;
 import com.antharos.joboffer.application.find.FindCandidatesByJobOfferQueryHandler;
 import com.antharos.joboffer.application.update.*;
 import com.antharos.joboffer.domain.candidate.Candidate;
-import com.antharos.joboffer.infrastructure.apirest.presentationmodel.AddCandidateRequest;
-import com.antharos.joboffer.infrastructure.apirest.presentationmodel.CandidateMapper;
-import com.antharos.joboffer.infrastructure.apirest.presentationmodel.CandidateResponse;
-import com.antharos.joboffer.infrastructure.apirest.presentationmodel.SimpleCandidateResponse;
+import com.antharos.joboffer.infrastructure.apirest.presentationmodel.candidate.AddCandidateRequest;
+import com.antharos.joboffer.infrastructure.apirest.presentationmodel.candidate.CandidateMapper;
+import com.antharos.joboffer.infrastructure.apirest.presentationmodel.candidate.CandidateResponse;
+import com.antharos.joboffer.infrastructure.apirest.presentationmodel.candidate.SimpleCandidateResponse;
+import java.util.List;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/candidates")
@@ -49,7 +48,8 @@ public class CandidateController {
   }
 
   @GetMapping("/email/{email}")
-  public ResponseEntity<CandidateResponse> findByPersonalEmail(@PathVariable("email") String email) {
+  public ResponseEntity<CandidateResponse> findByPersonalEmail(
+      @PathVariable("email") String email) {
     var candidate =
         this.findByPersonalEmailQueryHandler.handle(FindCandidateByPersonalEmailQuery.of(email));
 
@@ -61,8 +61,11 @@ public class CandidateController {
   }
 
   @GetMapping
-  public ResponseEntity<List<SimpleCandidateResponse>> findByJobOfferId(@RequestParam UUID jobOfferId) {
-    List<Candidate> candidates = this.findCandidatesByJobOfferQueryHandler.handle(FindCandidatesByJobOfferQuery.of(jobOfferId));
+  public ResponseEntity<List<SimpleCandidateResponse>> findByJobOfferId(
+      @RequestParam UUID jobOfferId) {
+    List<Candidate> candidates =
+        this.findCandidatesByJobOfferQueryHandler.handle(
+            FindCandidatesByJobOfferQuery.of(jobOfferId));
 
     if (candidates.isEmpty()) {
       return ResponseEntity.noContent().build();
@@ -73,19 +76,22 @@ public class CandidateController {
 
   @PatchMapping("/{candidateId}/reject")
   public ResponseEntity<Void> rejectCandidate(@PathVariable String candidateId) {
-    this.rejectCandidateCommandHandler.doHandle(RejectCandidateCommand.builder().candidateId(candidateId).byUser("admin").build());
+    this.rejectCandidateCommandHandler.doHandle(
+        RejectCandidateCommand.builder().candidateId(candidateId).byUser("admin").build());
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
   @PatchMapping("/{candidateId}/hire")
   public ResponseEntity<Void> hireCandidate(@PathVariable String candidateId) {
-    this.hireCandidateCommandHandler.doHandle(HireCandidateCommand.builder().candidateId(candidateId).byUser("admin").build());
+    this.hireCandidateCommandHandler.doHandle(
+        HireCandidateCommand.builder().candidateId(candidateId).byUser("admin").build());
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
   @PatchMapping("/{candidateId}/interview")
   public ResponseEntity<Void> interviewCandidate(@PathVariable String candidateId) {
-    this.interviewCandidateCommandHandler.doHandle(InterviewCandidateCommand.builder().candidateId(candidateId).byUser("admin").build());
+    this.interviewCandidateCommandHandler.doHandle(
+        InterviewCandidateCommand.builder().candidateId(candidateId).byUser("admin").build());
     return new ResponseEntity<>(HttpStatus.OK);
   }
 }

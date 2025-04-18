@@ -48,6 +48,6 @@ public class MessageProducerImpl implements MessageProducer {
   @Override
   public void sendCandidateApplied(Candidate candidate) {
     this.sendMessage(
-            UUID.fromString(candidate.getId().getValueAsString()), "CANDIDATE_APPLIED", candidate);
+        UUID.fromString(candidate.getId().getValueAsString()), "CANDIDATE_APPLIED", candidate);
   }
 }

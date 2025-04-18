@@ -2,9 +2,8 @@ package com.antharos.joboffer.infrastructure.repository.joboffer;
 
 import com.antharos.joboffer.domain.joboffer.JobOffer;
 import com.antharos.joboffer.domain.joboffer.JobOfferId;
-import org.springframework.stereotype.Component;
-
 import java.util.UUID;
+import org.springframework.stereotype.Component;
 
 @Component
 public class JobOfferMapper {
@@ -29,7 +28,7 @@ public class JobOfferMapper {
     entity.setId(UUID.fromString(jobOffer.getId().getValueAsString()));
     entity.setJobTitleId(jobOffer.getJobTitleId());
     entity.setActive(jobOffer.isActive());
-    //entity.setCandidates();
+    // entity.setCandidates();
     entity.setDescription(jobOffer.getDescription());
     entity.setRequirement(jobOffer.getRequirement());
     entity.setRemote(jobOffer.getRemote());

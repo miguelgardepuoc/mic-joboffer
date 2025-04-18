@@ -2,7 +2,6 @@ package com.antharos.joboffer.domain.candidate.repository;
 
 import com.antharos.joboffer.domain.candidate.Candidate;
 import com.antharos.joboffer.domain.candidate.CandidateId;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

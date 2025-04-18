@@ -6,6 +6,6 @@ import lombok.Value;
 @Builder
 @Value
 public class HireCandidateCommand {
-    String candidateId;
-    String byUser;
+  String candidateId;
+  String byUser;
 }

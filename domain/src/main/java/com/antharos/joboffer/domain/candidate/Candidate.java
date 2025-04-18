@@ -1,13 +1,13 @@
 package com.antharos.joboffer.domain.candidate;
 
+import static com.antharos.joboffer.domain.candidate.CandidateStatus.*;
+
 import com.antharos.joboffer.domain.globalexceptions.ConflictException;
 import com.antharos.joboffer.domain.joboffer.JobOfferId;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-
-import static com.antharos.joboffer.domain.candidate.CandidateStatus.*;
 
 @Getter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -76,7 +76,9 @@ public class Candidate {
   }
 
   public void interview(String byUser) {
-    if (HIRED.equals(this.status) || REJECTED.equals(this.status) || INTERVIEWING.equals(this.status)) {
+    if (HIRED.equals(this.status)
+        || REJECTED.equals(this.status)
+        || INTERVIEWING.equals(this.status)) {
       throw new ConflictException();
     }
     this.status = INTERVIEWING;

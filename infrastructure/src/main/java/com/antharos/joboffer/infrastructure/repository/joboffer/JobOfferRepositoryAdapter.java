@@ -18,9 +18,7 @@ public class JobOfferRepositoryAdapter implements JobOfferRepository {
 
   @Override
   public List<JobOffer> findAllActive() {
-    return this.jpaRepository.findAllByIsActiveTrue().stream()
-        .map(this.mapper::toDomain)
-        .toList();
+    return this.jpaRepository.findAllByIsActiveTrue().stream().map(this.mapper::toDomain).toList();
   }
 
   @Override

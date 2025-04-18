@@ -11,8 +11,6 @@ public class FindCandidateByPersonalEmailQueryHandler {
   private final CandidateRepository repository;
 
   public Candidate handle(FindCandidateByPersonalEmailQuery query) {
-    return this.repository
-        .findByPersonalEmail(query.getPersonalEmail())
-        .orElse(null);
+    return this.repository.findByPersonalEmail(query.getPersonalEmail()).orElse(null);
   }
 }

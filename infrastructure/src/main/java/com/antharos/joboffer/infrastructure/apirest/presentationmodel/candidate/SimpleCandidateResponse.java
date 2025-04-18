@@ -1,11 +1,10 @@
-package com.antharos.joboffer.infrastructure.apirest.presentationmodel;
+package com.antharos.joboffer.infrastructure.apirest.presentationmodel.candidate;
 
 import com.antharos.joboffer.domain.candidate.CandidateStatus;
 import java.util.UUID;
 
-public record CandidateResponse(
+public record SimpleCandidateResponse(
     UUID id,
-    UUID jobOfferId,
     CandidateStatus status,
     String personalEmail,
     String cvUrl,

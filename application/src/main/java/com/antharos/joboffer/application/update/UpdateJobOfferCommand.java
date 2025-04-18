@@ -1,19 +1,17 @@
-package com.antharos.joboffer.application.create;
+package com.antharos.joboffer.application.update;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 import lombok.Builder;
 import lombok.Value;
 
 @Builder
 @Value
-public class AddJobOfferCommand {
+public class UpdateJobOfferCommand {
   String id;
-  UUID jobTitleId;
   String description;
   BigDecimal minSalary;
   BigDecimal maxSalary;
   short remote;
   String requirement;
-  String createdBy;
+  String lastModifiedBy;
 }

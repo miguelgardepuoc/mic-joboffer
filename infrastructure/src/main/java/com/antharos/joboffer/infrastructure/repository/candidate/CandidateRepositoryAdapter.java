@@ -40,6 +40,8 @@ public class CandidateRepositoryAdapter implements CandidateRepository {
 
   @Override
   public List<Candidate> findByJobOfferId(UUID jobOfferId) {
-    return this.jpaRepository.findByJobOffer_Id(jobOfferId).stream().map(this.mapper::toDomain).toList();
+    return this.jpaRepository.findByJobOffer_Id(jobOfferId).stream()
+        .map(this.mapper::toDomain)
+        .toList();
   }
 }

@@ -1,4 +1,4 @@
-package com.antharos.joboffer.infrastructure.apirest.presentationmodel;
+package com.antharos.joboffer.infrastructure.apirest.presentationmodel.joboffer;
 
 import com.antharos.joboffer.domain.joboffer.JobOffer;
 import com.antharos.joboffer.domain.joboffer.JobOfferId;

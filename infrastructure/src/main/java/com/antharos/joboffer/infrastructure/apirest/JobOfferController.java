@@ -2,12 +2,15 @@ package com.antharos.joboffer.infrastructure.apirest;
 
 import com.antharos.joboffer.application.create.AddJobOfferCommand;
 import com.antharos.joboffer.application.create.AddJobOfferCommandHandler;
+import com.antharos.joboffer.application.delete.WithdrawJobOfferCommand;
+import com.antharos.joboffer.application.delete.WithdrawJobOfferCommandHandler;
 import com.antharos.joboffer.application.find.FindJobOfferQuery;
 import com.antharos.joboffer.application.find.FindJobOfferQueryHandler;
 import com.antharos.joboffer.application.find.FindJobOffersQuery;
 import com.antharos.joboffer.application.find.FindJobOffersQueryHandler;
-import com.antharos.joboffer.infrastructure.apirest.presentationmodel.*;
-
+import com.antharos.joboffer.application.update.UpdateJobOfferCommand;
+import com.antharos.joboffer.application.update.UpdateJobOfferCommandHandler;
+import com.antharos.joboffer.infrastructure.apirest.presentationmodel.joboffer.*;
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +27,8 @@ public class JobOfferController {
   private final FindJobOfferQueryHandler findJobOfferQueryHandler;
 
   private final AddJobOfferCommandHandler addJobOfferCommandHandler;
+  private final UpdateJobOfferCommandHandler updateJobOfferCommandHandler;
+  private final WithdrawJobOfferCommandHandler withdrawJobOfferCommandHandler;
 
   private final JobOfferMapper mapper;
 
@@ -48,18 +53,44 @@ public class JobOfferController {
   @PostMapping
   public ResponseEntity<Void> addJobOffer(@RequestBody AddJobOfferRequest request) {
     AddJobOfferCommand command =
-            AddJobOfferCommand.builder()
-                    .id(request.getId())
-                    .jobTitleId(request.getJobTitleId())
-                    .description(request.getDescription())
-                    .remote(request.getRemote())
-                    .requirement(request.getRequirement())
-                    .minSalary(request.getMinSalary())
-                    .maxSalary(request.getMaxSalary())
-                    .createdBy("admin")
-                    .build();
+        AddJobOfferCommand.builder()
+            .id(request.getId())
+            .jobTitleId(request.getJobTitleId())
+            .description(request.getDescription())
+            .remote(request.getRemote())
+            .requirement(request.getRequirement())
+            .minSalary(request.getMinSalary())
+            .maxSalary(request.getMaxSalary())
+            .createdBy("admin")
+            .build();
 
     this.addJobOfferCommandHandler.doHandle(command);
     return new ResponseEntity<>(HttpStatus.CREATED);
+  }
+
+  @PutMapping
+  public ResponseEntity<Void> updateJobOffer(@RequestBody UpdateJobOfferRequest request) {
+    UpdateJobOfferCommand command =
+        UpdateJobOfferCommand.builder()
+            .id(request.getId())
+            .description(request.getDescription())
+            .remote(request.getRemote())
+            .requirement(request.getRequirement())
+            .minSalary(request.getMinSalary())
+            .maxSalary(request.getMaxSalary())
+            .lastModifiedBy("admin")
+            .build();
+
+    this.updateJobOfferCommandHandler.doHandle(command);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @DeleteMapping("/{jobOfferId}")
+  public ResponseEntity<Void> withdrawJobOffer(@PathVariable String jobOfferId) {
+    WithdrawJobOfferCommand command =
+        WithdrawJobOfferCommand.builder().id(jobOfferId).lastModifiedBy("admin").build();
+
+    this.withdrawJobOfferCommandHandler.doHandle(command);
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 }

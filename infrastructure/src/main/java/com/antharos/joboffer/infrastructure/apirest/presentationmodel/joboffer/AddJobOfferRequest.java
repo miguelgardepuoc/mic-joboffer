@@ -1,13 +1,11 @@
-package com.antharos.joboffer.application.create;
+package com.antharos.joboffer.infrastructure.apirest.presentationmodel.joboffer;
 
 import java.math.BigDecimal;
 import java.util.UUID;
-import lombok.Builder;
-import lombok.Value;
+import lombok.Getter;
 
-@Builder
-@Value
-public class AddJobOfferCommand {
+@Getter
+public class AddJobOfferRequest {
   String id;
   UUID jobTitleId;
   String description;
@@ -15,5 +13,4 @@ public class AddJobOfferCommand {
   BigDecimal maxSalary;
   short remote;
   String requirement;
-  String createdBy;
 }

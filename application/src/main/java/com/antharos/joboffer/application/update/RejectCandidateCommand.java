@@ -6,6 +6,6 @@ import lombok.Value;
 @Builder
 @Value
 public class RejectCandidateCommand {
-    String candidateId;
-    String byUser;
+  String candidateId;
+  String byUser;
 }
