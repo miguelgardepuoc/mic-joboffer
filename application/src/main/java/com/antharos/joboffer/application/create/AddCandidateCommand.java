@@ -9,6 +9,6 @@ public class AddCandidateCommand {
   String id;
   String jobOfferId;
   String personalEmail;
-  String cvUrl;
+  String cvFilename;
   String createdBy;
 }

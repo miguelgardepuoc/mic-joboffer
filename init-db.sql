@@ -21,7 +21,7 @@ CREATE TABLE "candidate" (
     "job_offer_id" uuid NOT NULL,
     "status" status_enum NOT NULL,
     "personal_email" varchar(255) NOT NULL,
-    "cv" varchar(255) NOT NULL,
+    "cv_filename" varchar(255) NOT NULL,
     "name" varchar(255),
     "surname" varchar(255),
     "phone_number" varchar(20),

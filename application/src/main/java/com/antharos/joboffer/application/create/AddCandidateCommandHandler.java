@@ -47,7 +47,7 @@ public class AddCandidateCommandHandler {
         Candidate.create(
             candidateId,
             personalEmail,
-            command.getCvUrl(),
+            command.getCvFilename(),
             jobOffer.getId(),
             command.getCreatedBy());
 

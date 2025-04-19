@@ -18,7 +18,7 @@ public class Candidate {
 
   private PersonalEmail personalEmail;
 
-  private String cvUrl;
+  private String cvFilename;
 
   private Name name;
 
@@ -45,13 +45,13 @@ public class Candidate {
   public Candidate(
       CandidateId candidateId,
       PersonalEmail personalEmail,
-      String cvUrl,
+      String cvFilename,
       CandidateStatus status,
       JobOfferId jobOfferId,
       String createdBy) {
     this.id = candidateId;
     this.personalEmail = personalEmail;
-    this.cvUrl = cvUrl;
+    this.cvFilename = cvFilename;
     this.status = status;
     this.jobOfferId = jobOfferId;
     this.createdBy = createdBy;

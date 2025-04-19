@@ -39,7 +39,7 @@ public class CandidateController {
             .id(request.getId())
             .jobOfferId(request.getJobOfferId())
             .personalEmail(request.getPersonalEmail())
-            .cvUrl(request.getCvUrl())
+            .cvFilename(request.getCvFilename())
             .createdBy("admin")
             .build();
 

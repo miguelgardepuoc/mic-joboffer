@@ -30,8 +30,8 @@ public class CandidateEntity {
   @Column(name = "personal_email", nullable = false)
   private String personalEmail;
 
-  @Column(name = "cv", nullable = false)
-  private String cvUrl;
+  @Column(name = "cv_filename", nullable = false)
+  private String cvFilename;
 
   @Column(name = "name")
   private String name;

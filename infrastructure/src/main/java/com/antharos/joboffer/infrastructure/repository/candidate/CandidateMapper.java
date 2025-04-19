@@ -30,7 +30,7 @@ public class CandidateMapper {
     return new Candidate(
         CandidateId.of(entity.getId().toString()),
         email,
-        entity.getCvUrl(),
+        entity.getCvFilename(),
         name,
         surname,
         phoneNumber,
@@ -47,7 +47,7 @@ public class CandidateMapper {
 
     entity.setId(UUID.fromString(domain.getId().getValueAsString()));
     entity.setPersonalEmail(domain.getPersonalEmail().value());
-    entity.setCvUrl(domain.getCvUrl());
+    entity.setCvFilename(domain.getCvFilename());
     entity.setName(domain.getName() != null ? domain.getName().value() : null);
     entity.setSurname(domain.getSurname() != null ? domain.getSurname().value() : null);
     entity.setPhoneNumber(

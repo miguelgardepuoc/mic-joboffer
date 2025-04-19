@@ -7,7 +7,7 @@ public record SimpleCandidateResponse(
     UUID id,
     CandidateStatus status,
     String personalEmail,
-    String cvUrl,
+    String cvFilename,
     String name,
     String surname,
     String phoneNumber) {}
