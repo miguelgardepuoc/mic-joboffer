@@ -1,16 +1,12 @@
 package com.antharos.joboffer.application.create;
 
-import com.antharos.joboffer.domain.candidate.Candidate;
-import com.antharos.joboffer.domain.candidate.CandidateAlreadyExists;
-import com.antharos.joboffer.domain.candidate.CandidateId;
-import com.antharos.joboffer.domain.candidate.PersonalEmail;
+import com.antharos.joboffer.domain.candidate.*;
 import com.antharos.joboffer.domain.candidate.repository.CandidateRepository;
 import com.antharos.joboffer.domain.candidate.repository.MessageProducer;
 import com.antharos.joboffer.domain.joboffer.JobOffer;
 import com.antharos.joboffer.domain.joboffer.JobOfferId;
 import com.antharos.joboffer.domain.joboffer.JobOfferNotFoundException;
 import com.antharos.joboffer.domain.joboffer.repository.JobOfferRepository;
-import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -29,8 +25,7 @@ public class AddCandidateCommandHandler {
     JobOffer jobOffer =
         this.jobOfferRepository
             .findById(jobOfferId)
-            .orElseThrow(
-                () -> new JobOfferNotFoundException(UUID.fromString(command.getJobOfferId())));
+            .orElseThrow(() -> new JobOfferNotFoundException(command.getJobOfferId()));
 
     final CandidateId candidateId = CandidateId.of(command.getId());
 
@@ -42,6 +37,10 @@ public class AddCandidateCommandHandler {
             });
 
     PersonalEmail personalEmail = new PersonalEmail(command.getPersonalEmail());
+
+    if (this.candidateRepository.existsByEmail(jobOfferId, personalEmail)) {
+      throw new CandidateAlreadyRegisteredException();
+    }
 
     Candidate newCandidate =
         Candidate.create(

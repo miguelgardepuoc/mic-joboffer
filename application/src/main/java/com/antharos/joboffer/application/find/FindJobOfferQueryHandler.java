@@ -15,6 +15,6 @@ public class FindJobOfferQueryHandler {
   public JobOffer handle(FindJobOfferQuery query) {
     return this.repository
         .findById(JobOfferId.of(query.getJobOfferId().toString()))
-        .orElseThrow(() -> new JobOfferNotFoundException(query.getJobOfferId()));
+        .orElseThrow(() -> new JobOfferNotFoundException(query.getJobOfferId().toString()));
   }
 }

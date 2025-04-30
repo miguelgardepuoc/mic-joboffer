@@ -2,7 +2,9 @@ package com.antharos.joboffer.infrastructure.out.repository.candidate;
 
 import com.antharos.joboffer.domain.candidate.Candidate;
 import com.antharos.joboffer.domain.candidate.CandidateId;
+import com.antharos.joboffer.domain.candidate.PersonalEmail;
 import com.antharos.joboffer.domain.candidate.repository.CandidateRepository;
+import com.antharos.joboffer.domain.joboffer.JobOfferId;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -15,11 +17,6 @@ public class CandidateRepositoryAdapter implements CandidateRepository {
 
   private final JpaCandidateRepository jpaRepository;
   private final CandidateMapper mapper;
-
-  @Override
-  public List<Candidate> findAll() {
-    return this.jpaRepository.findAll().stream().map(this.mapper::toDomain).toList();
-  }
 
   @Override
   public void saveCandidate(Candidate candidate) {
@@ -43,5 +40,11 @@ public class CandidateRepositoryAdapter implements CandidateRepository {
     return this.jpaRepository.findByJobOffer_Id(jobOfferId).stream()
         .map(this.mapper::toDomain)
         .toList();
+  }
+
+  @Override
+  public boolean existsByEmail(JobOfferId jobOfferId, PersonalEmail personalEmail) {
+    return this.jpaRepository.existsByPersonalEmailIgnoreCaseAndJobOffer_Id(
+        personalEmail.value(), UUID.fromString(jobOfferId.getValueAsString()));
   }
 }

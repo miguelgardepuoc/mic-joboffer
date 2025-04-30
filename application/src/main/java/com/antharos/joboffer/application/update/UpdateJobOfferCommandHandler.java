@@ -5,7 +5,6 @@ import com.antharos.joboffer.domain.joboffer.JobOfferId;
 import com.antharos.joboffer.domain.joboffer.JobOfferNotFoundException;
 import com.antharos.joboffer.domain.joboffer.SalaryRange;
 import com.antharos.joboffer.domain.joboffer.repository.JobOfferRepository;
-import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +22,7 @@ public class UpdateJobOfferCommandHandler {
     JobOffer jobOffer =
         this.jobOfferRepository
             .findById(jobOfferId)
-            .orElseThrow(() -> new JobOfferNotFoundException(UUID.fromString(command.getId())));
+            .orElseThrow(() -> new JobOfferNotFoundException(command.getId()));
 
     jobOffer.update(
         command.getDescription(),

@@ -6,9 +6,9 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface JpaCandidateRepository extends JpaRepository<CandidateEntity, UUID> {
-  List<CandidateEntity> findAll();
-
   Optional<CandidateEntity> findByPersonalEmail(String personalEmail);
 
   List<CandidateEntity> findByJobOffer_Id(UUID jobOfferId);
+
+  boolean existsByPersonalEmailIgnoreCaseAndJobOffer_Id(String email, UUID jobOfferId);
 }
