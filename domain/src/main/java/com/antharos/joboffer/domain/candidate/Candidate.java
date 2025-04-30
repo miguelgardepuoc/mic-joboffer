@@ -48,13 +48,15 @@ public class Candidate {
       String cvFilename,
       CandidateStatus status,
       JobOfferId jobOfferId,
-      String createdBy) {
+      String createdBy,
+      Date createdAt) {
     this.id = candidateId;
     this.personalEmail = personalEmail;
     this.cvFilename = cvFilename;
     this.status = status;
     this.jobOfferId = jobOfferId;
     this.createdBy = createdBy;
+    this.createdAt = createdAt;
   }
 
   public static Candidate create(
@@ -63,7 +65,8 @@ public class Candidate {
       String cv,
       JobOfferId jobOfferId,
       String createdBy) {
-    return new Candidate(candidateId, personalEmail, cv, APPLIED, jobOfferId, createdBy);
+    return new Candidate(
+        candidateId, personalEmail, cv, APPLIED, jobOfferId, createdBy, new Date());
   }
 
   public void reject(String byUser) {
@@ -91,6 +94,13 @@ public class Candidate {
       throw new ConflictException();
     }
     this.status = HIRED;
+    this.lastModifiedAt = new Date();
+    this.lastModifiedBy = byUser;
+  }
+
+  public void fullname(Name name, Surname surname, String byUser) {
+    this.name = name;
+    this.surname = surname;
     this.lastModifiedAt = new Date();
     this.lastModifiedBy = byUser;
   }

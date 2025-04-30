@@ -20,4 +20,9 @@ public class JobOfferId {
     }
     return new JobOfferId(jobOfferId);
   }
+
+  @Override
+  public String toString() {
+    return valueAsString;
+  }
 }

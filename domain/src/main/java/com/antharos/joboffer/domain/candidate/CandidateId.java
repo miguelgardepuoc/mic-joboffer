@@ -20,4 +20,9 @@ public class CandidateId {
     }
     return new CandidateId(candidateId);
   }
+
+  @Override
+  public String toString() {
+    return valueAsString;
+  }
 }

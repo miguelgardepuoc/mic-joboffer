@@ -52,6 +52,6 @@ public class AddCandidateCommandHandler {
             command.getCreatedBy());
 
     this.candidateRepository.saveCandidate(newCandidate);
-    this.messageProducer.sendCandidateApplied(newCandidate);
+    this.messageProducer.sendCandidateAppliedEvent(newCandidate);
   }
 }

@@ -22,7 +22,7 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
-    show-sql: true
+    #show-sql: true
     format_sql: true
     properties:
       hibernate:
@@ -34,9 +34,19 @@ spring:
     password: ${SPRING_JMS_PASSWORD}
 producer:
   event:
-    host: ${PRODUCER_ARTEMIS_HOST:localhost}
-    port: ${PRODUCER_ARTEMIS_PORT:61616}
-    user: ${PRODUCER_ARTEMIS_USER:admin}
-    password: ${PRODUCER_ARTEMIS_PASSWORD:admin}
+    host: localhost
+    port: 6612
+    user: admin
+    password: admin
   topic:
-    name: ${PRODUCER_TOPIC_NAME:test-topic}
+    name: job-offer.candidate
+consumer:
+  event:
+    host: localhost
+    port: 6613
+    user: admin
+    password: admin
+  topic:
+    name: aiintegrations.processed-asset
+  subscription:
+    name: job-offers

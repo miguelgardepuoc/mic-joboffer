@@ -1,4 +1,4 @@
-CREATE TYPE status_enum AS ENUM ('PENDING', 'DISCARDED', 'VALID');
+CREATE TYPE status_enum AS ENUM ('APPLIED', 'INTERVIEWING', 'HIRED', 'REJECTED');
 
 CREATE TABLE "job_offer" (
     "id" uuid NOT NULL,
@@ -56,7 +56,7 @@ VALUES (
     'Estamos buscando un Principal Software Engineer para liderar equipos de desarrollo en proyectos innovadores. Este puesto es clave para la arquitectura de nuestras soluciones tecnológicas, asegurando que se cumplan los más altos estándares de calidad. Como líder técnico, colaborarás estrechamente con otros departamentos, influirás en la dirección técnica de la empresa y mentorizarás a ingenieros junior y senior. Es fundamental tener experiencia en proyectos grandes y en liderar equipos de desarrollo.',
     70000,
     80000,
-    40,
+    0,
     'Experiencia significativa como ingeniero de software; dominio de arquitecturas de microservicios; conocimientos profundos en lenguajes como Java, C# o Python; habilidades en liderazgo de equipos y toma de decisiones técnicas; experiencia en la implementación de soluciones en la nube (AWS, Azure, GCP); excelente capacidad para comunicar ideas técnicas complejas',
     true,
     'admin',
@@ -69,7 +69,7 @@ VALUES (
     'Buscamos un Junior Backend Developer para incorporarse a nuestro equipo de desarrollo en una empresa tecnológica en pleno crecimiento. Participarás en el diseño, implementación y mantenimiento de servicios backend, colaborando con equipos multidisciplinares para crear soluciones escalables y eficientes. Trabajarás bajo la supervisión de desarrolladores senior, adquiriendo experiencia en entornos ágiles y utilizando herramientas y tecnologías modernas. Si te apasiona la programación y quieres crecer profesionalmente, esta es tu oportunidad.',
     30000,
     35000,
-    60,
+    75,
     'Conocimientos en Node.js, Python o Java; comprensión básica de bases de datos relacionales (PostgreSQL, MySQL); nociones de diseño y consumo de APIs REST; experiencia con Git y control de versiones; interés en metodologías ágiles (Scrum, Kanban); capacidad para resolver problemas y aprender rápidamente; buen nivel de comunicación y trabajo en equipo',
     true,
     'admin',
@@ -135,7 +135,7 @@ VALUES (
      'Estamos buscando un Platform Engineer para desarrollar y mantener la infraestructura y herramientas que soportan nuestros productos y servicios. Trabajarás en la creación de plataformas escalables y seguras, así como en la automatización de procesos. Este rol requiere experiencia trabajando con entornos en la nube y una mentalidad orientada a la mejora continua.',
      70000,
      90000,
-     40,
+     100,
      'Experiencia con plataformas en la nube (AWS, GCP, Azure); conocimientos de contenedores y orquestación (Docker, Kubernetes); habilidades de scripting (Python, Bash); experiencia en la automatización de infraestructura (Terraform, Ansible); comprensión de la seguridad en la infraestructura',
      true,
      'admin',
@@ -149,7 +149,7 @@ VALUES (
      'Buscamos un Senior Machine Learning Engineer con experiencia en la implementación de modelos predictivos y en el diseño de arquitecturas de aprendizaje automático. Este rol será clave en la creación de soluciones basadas en IA que impacten directamente en los productos de la empresa. Necesitamos a alguien con conocimientos avanzados en deep learning, NLP y visión computacional.',
      100000,
      130000,
-     40,
+     75,
      'Experiencia en machine learning y deep learning; dominio de frameworks como TensorFlow, PyTorch, o Keras; experiencia en el manejo de grandes volúmenes de datos; conocimientos avanzados en Python y R; capacidad para implementar y optimizar modelos de ML en producción',
      true,
      'admin',
@@ -163,7 +163,7 @@ VALUES (
      'Estamos buscando un Tech Lead con sólida experiencia técnica y habilidades de liderazgo. Serás responsable de dirigir un equipo de desarrollo, coordinar el diseño y la implementación de soluciones de software, y asegurar la calidad del código. Este puesto requiere un enfoque en la entrega de valor mediante la colaboración entre equipos y la mejora continua de procesos.',
      80000,
      110000,
-     40,
+     100,
      'Experiencia como líder técnico o senior en equipos de desarrollo; conocimientos en arquitecturas de microservicios; dominio de lenguajes como Java, Python o C#; experiencia con metodologías ágiles; capacidad para mentorizar y guiar equipos técnicos; habilidades excepcionales de comunicación',
      true,
      'admin',
