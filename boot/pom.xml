@@ -19,7 +19,6 @@
     </properties>
 
     <dependencies>
-        <!-- Internal -->
         <dependency>
             <groupId>com.antharos.joboffer</groupId>
             <artifactId>infrastructure</artifactId>
@@ -37,8 +36,7 @@
             <artifactId>domain</artifactId>
             <version>${project.version}</version>
         </dependency>
-        
-        <!-- Test scope -->
+
         <dependency>
             <groupId>com.tngtech.archunit</groupId>
             <artifactId>archunit-junit5</artifactId>

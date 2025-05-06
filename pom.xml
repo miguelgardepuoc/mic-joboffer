@@ -36,9 +36,11 @@
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <lombok.version>1.18.38</lombok.version>
         <postgresql.version>42.7.5</postgresql.version>
+        <hibernate-core.version>6.6.13.Final</hibernate-core.version>
         <archunit.junit5.version>1.4.0</archunit.junit5.version>
         <qpid.jms.client.version>2.7.0</qpid.jms.client.version>
         <artemis.jms.client.version>2.31.0</artemis.jms.client.version>
+        <io.jsonwebtoken.version>0.11.5</io.jsonwebtoken.version>
 
         <!-- Plugins -->
         <maven.compiler.plugin.version>3.9.0</maven.compiler.plugin.version>
@@ -100,6 +102,11 @@
                 <version>${postgresql.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate-core.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.qpid</groupId>
                 <artifactId>qpid-jms-client</artifactId>
                 <version>${qpid.jms.client.version}</version>
@@ -108,6 +115,23 @@
                 <groupId>org.apache.activemq</groupId>
                 <artifactId>artemis-jms-client</artifactId>
                 <version>${artemis.jms.client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${io.jsonwebtoken.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${io.jsonwebtoken.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${io.jsonwebtoken.version}</version>
+                <scope>runtime</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

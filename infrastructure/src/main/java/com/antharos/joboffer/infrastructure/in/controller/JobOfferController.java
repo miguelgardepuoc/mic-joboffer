@@ -11,6 +11,8 @@ import com.antharos.joboffer.application.find.FindJobOffersQueryHandler;
 import com.antharos.joboffer.application.update.UpdateJobOfferCommand;
 import com.antharos.joboffer.application.update.UpdateJobOfferCommandHandler;
 import com.antharos.joboffer.infrastructure.in.dto.joboffer.*;
+import com.antharos.joboffer.infrastructure.security.ManagementOnly;
+import jakarta.annotation.security.PermitAll;
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +34,7 @@ public class JobOfferController {
 
   private final JobOfferMapper mapper;
 
+  @PermitAll
   @GetMapping
   public ResponseEntity<List<SimpleJobOffer>> getAllJobOffers() {
     return ResponseEntity.ok(
@@ -39,6 +42,7 @@ public class JobOfferController {
             this.findJobOffersQueryHandler.handle(FindJobOffersQuery.of()).stream().toList()));
   }
 
+  @PermitAll
   @GetMapping("/{jobOfferId}")
   public ResponseEntity<JobOfferResponse> findJobOfferDetail(@PathVariable UUID jobOfferId) {
     var jobOffer = this.findJobOfferQueryHandler.handle(FindJobOfferQuery.of(jobOfferId));
@@ -50,6 +54,7 @@ public class JobOfferController {
     return ResponseEntity.ok(this.mapper.toJobOfferResponse(jobOffer));
   }
 
+  @ManagementOnly
   @PostMapping
   public ResponseEntity<Void> addJobOffer(@RequestBody AddJobOfferRequest request) {
     AddJobOfferCommand command =
@@ -68,6 +73,7 @@ public class JobOfferController {
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
+  @ManagementOnly
   @PutMapping
   public ResponseEntity<Void> updateJobOffer(@RequestBody UpdateJobOfferRequest request) {
     UpdateJobOfferCommand command =
@@ -85,6 +91,7 @@ public class JobOfferController {
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
+  @ManagementOnly
   @DeleteMapping("/{jobOfferId}")
   public ResponseEntity<Void> withdrawJobOffer(@PathVariable String jobOfferId) {
     WithdrawJobOfferCommand command =

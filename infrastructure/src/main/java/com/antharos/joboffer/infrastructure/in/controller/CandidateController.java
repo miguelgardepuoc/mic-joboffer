@@ -2,16 +2,14 @@ package com.antharos.joboffer.infrastructure.in.controller;
 
 import com.antharos.joboffer.application.create.AddCandidateCommand;
 import com.antharos.joboffer.application.create.AddCandidateCommandHandler;
-import com.antharos.joboffer.application.find.FindCandidateByPersonalEmailQuery;
-import com.antharos.joboffer.application.find.FindCandidateByPersonalEmailQueryHandler;
-import com.antharos.joboffer.application.find.FindCandidatesByJobOfferQuery;
-import com.antharos.joboffer.application.find.FindCandidatesByJobOfferQueryHandler;
+import com.antharos.joboffer.application.find.*;
 import com.antharos.joboffer.application.update.*;
 import com.antharos.joboffer.domain.candidate.Candidate;
 import com.antharos.joboffer.infrastructure.in.dto.candidate.AddCandidateRequest;
 import com.antharos.joboffer.infrastructure.in.dto.candidate.CandidateMapper;
 import com.antharos.joboffer.infrastructure.in.dto.candidate.CandidateResponse;
 import com.antharos.joboffer.infrastructure.in.dto.candidate.SimpleCandidateResponse;
+import com.antharos.joboffer.infrastructure.security.ManagementOnly;
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -24,14 +22,18 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class CandidateController {
 
-  private final AddCandidateCommandHandler addCandidateCommandHandler;
+  private final FindCandidateByIdQueryHandler findCandidateByIdQueryHandler;
   private final FindCandidateByPersonalEmailQueryHandler findByPersonalEmailQueryHandler;
   private final FindCandidatesByJobOfferQueryHandler findCandidatesByJobOfferQueryHandler;
+
+  private final AddCandidateCommandHandler addCandidateCommandHandler;
   private final RejectCandidateCommandHandler rejectCandidateCommandHandler;
   private final HireCandidateCommandHandler hireCandidateCommandHandler;
   private final InterviewCandidateCommandHandler interviewCandidateCommandHandler;
+
   private final CandidateMapper mapper;
 
+  @ManagementOnly
   @PostMapping
   public ResponseEntity<Void> addCandidate(@RequestBody AddCandidateRequest request) {
     AddCandidateCommand command =
@@ -47,6 +49,20 @@ public class CandidateController {
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
+  @ManagementOnly
+  @GetMapping("/{candidateId}")
+  public ResponseEntity<CandidateResponse> findCandidate(@PathVariable String candidateId) {
+    var candidate =
+        this.findCandidateByIdQueryHandler.handle(FindCandidateByIdQuery.of(candidateId));
+
+    if (candidate == null) {
+      return ResponseEntity.notFound().build();
+    }
+
+    return ResponseEntity.ok(this.mapper.toCandidateResponse(candidate));
+  }
+
+  @ManagementOnly
   @GetMapping("/email/{email}")
   public ResponseEntity<CandidateResponse> findByPersonalEmail(
       @PathVariable("email") String email) {
@@ -60,6 +76,7 @@ public class CandidateController {
     return ResponseEntity.ok(this.mapper.toCandidateResponse(candidate));
   }
 
+  @ManagementOnly
   @GetMapping
   public ResponseEntity<List<SimpleCandidateResponse>> findByJobOfferId(
       @RequestParam UUID jobOfferId) {
@@ -74,6 +91,7 @@ public class CandidateController {
     return ResponseEntity.ok(this.mapper.toSimpleCandidatesResponse(candidates));
   }
 
+  @ManagementOnly
   @PatchMapping("/{candidateId}/reject")
   public ResponseEntity<Void> rejectCandidate(@PathVariable String candidateId) {
     this.rejectCandidateCommandHandler.doHandle(
@@ -81,6 +99,7 @@ public class CandidateController {
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
+  @ManagementOnly
   @PatchMapping("/{candidateId}/hire")
   public ResponseEntity<Void> hireCandidate(@PathVariable String candidateId) {
     this.hireCandidateCommandHandler.doHandle(
@@ -88,6 +107,7 @@ public class CandidateController {
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
+  @ManagementOnly
   @PatchMapping("/{candidateId}/interview")
   public ResponseEntity<Void> interviewCandidate(@PathVariable String candidateId) {
     this.interviewCandidateCommandHandler.doHandle(

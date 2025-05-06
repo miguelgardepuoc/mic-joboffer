@@ -18,4 +18,6 @@ public interface CandidateRepository {
   List<Candidate> findByJobOfferId(UUID jobOfferId);
 
   boolean existsByEmail(JobOfferId jobOfferId, PersonalEmail personalEmail);
+
+  Optional<Candidate> findById(String id);
 }

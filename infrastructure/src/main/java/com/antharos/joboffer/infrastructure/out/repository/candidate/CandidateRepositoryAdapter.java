@@ -47,4 +47,9 @@ public class CandidateRepositoryAdapter implements CandidateRepository {
     return this.jpaRepository.existsByPersonalEmailIgnoreCaseAndJobOffer_Id(
         personalEmail.value(), UUID.fromString(jobOfferId.getValueAsString()));
   }
+
+  @Override
+  public Optional<Candidate> findById(String id) {
+    return this.jpaRepository.findById(UUID.fromString(id)).map(this.mapper::toDomain);
+  }
 }
