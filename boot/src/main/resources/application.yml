@@ -1,6 +1,10 @@
 server:
   port: 8081
 spring:
+  data:
+    rest:
+      base-path: /none
+      detection-strategy: annotated
   application:
     name: mic-joboffer
   mvc:

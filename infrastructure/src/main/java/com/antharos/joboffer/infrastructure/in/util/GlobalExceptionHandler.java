@@ -1,4 +1,4 @@
-package com.antharos.joboffer.infrastructure.in.controller;
+package com.antharos.joboffer.infrastructure.in.util;
 
 import com.antharos.joboffer.domain.globalexceptions.AlreadyExistsException;
 import com.antharos.joboffer.domain.globalexceptions.ConflictException;
