@@ -1,9 +1,14 @@
 package com.antharos.joboffer.infrastructure.in.controller;
 
-import com.antharos.joboffer.application.create.AddCandidateCommand;
-import com.antharos.joboffer.application.create.AddCandidateCommandHandler;
-import com.antharos.joboffer.application.find.*;
-import com.antharos.joboffer.application.update.*;
+import com.antharos.joboffer.application.commands.candidate.add.AddCandidateCommand;
+import com.antharos.joboffer.application.commands.candidate.add.AddCandidateCommandHandler;
+import com.antharos.joboffer.application.commands.candidate.hire.HireCandidateCommand;
+import com.antharos.joboffer.application.commands.candidate.hire.HireCandidateCommandHandler;
+import com.antharos.joboffer.application.commands.candidate.interview.InterviewCandidateCommand;
+import com.antharos.joboffer.application.commands.candidate.interview.InterviewCandidateCommandHandler;
+import com.antharos.joboffer.application.commands.candidate.reject.RejectCandidateCommand;
+import com.antharos.joboffer.application.commands.candidate.reject.RejectCandidateCommandHandler;
+import com.antharos.joboffer.application.queries.candidate.*;
 import com.antharos.joboffer.domain.candidate.Candidate;
 import com.antharos.joboffer.infrastructure.in.dto.candidate.AddCandidateRequest;
 import com.antharos.joboffer.infrastructure.in.dto.candidate.CandidateMapper;

@@ -2,9 +2,10 @@ package com.antharos.joboffer.domain.candidate;
 
 import static com.antharos.joboffer.domain.candidate.CandidateStatus.*;
 
+import com.antharos.joboffer.domain.candidate.valueobject.*;
 import com.antharos.joboffer.domain.globalexceptions.ConflictException;
-import com.antharos.joboffer.domain.joboffer.JobOfferId;
-import java.util.Date;
+import com.antharos.joboffer.domain.joboffer.valueobject.JobOfferId;
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -30,11 +31,11 @@ public class Candidate {
 
   private String createdBy;
 
-  private Date createdAt;
+  private LocalDate createdAt;
 
   private String lastModifiedBy;
 
-  private Date lastModifiedAt;
+  private LocalDate lastModifiedAt;
 
   private JobOfferId jobOfferId;
 
@@ -49,7 +50,7 @@ public class Candidate {
       CandidateStatus status,
       JobOfferId jobOfferId,
       String createdBy,
-      Date createdAt) {
+      LocalDate createdAt) {
     this.id = candidateId;
     this.personalEmail = personalEmail;
     this.cvFilename = cvFilename;
@@ -66,7 +67,7 @@ public class Candidate {
       JobOfferId jobOfferId,
       String createdBy) {
     return new Candidate(
-        candidateId, personalEmail, cv, APPLIED, jobOfferId, createdBy, new Date());
+        candidateId, personalEmail, cv, APPLIED, jobOfferId, createdBy, LocalDate.now());
   }
 
   public void reject(String byUser) {
@@ -74,7 +75,6 @@ public class Candidate {
       throw new ConflictException();
     }
     this.status = REJECTED;
-    this.lastModifiedAt = new Date();
     this.lastModifiedBy = byUser;
   }
 
@@ -85,7 +85,6 @@ public class Candidate {
       throw new ConflictException();
     }
     this.status = INTERVIEWING;
-    this.lastModifiedAt = new Date();
     this.lastModifiedBy = byUser;
   }
 
@@ -94,14 +93,12 @@ public class Candidate {
       throw new ConflictException();
     }
     this.status = HIRED;
-    this.lastModifiedAt = new Date();
     this.lastModifiedBy = byUser;
   }
 
   public void fullname(Name name, Surname surname, String byUser) {
     this.name = name;
     this.surname = surname;
-    this.lastModifiedAt = new Date();
     this.lastModifiedBy = byUser;
   }
 }

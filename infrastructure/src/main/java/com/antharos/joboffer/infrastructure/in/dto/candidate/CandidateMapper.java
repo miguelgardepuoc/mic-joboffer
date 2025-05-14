@@ -1,7 +1,11 @@
 package com.antharos.joboffer.infrastructure.in.dto.candidate;
 
 import com.antharos.joboffer.domain.candidate.*;
-import com.antharos.joboffer.domain.joboffer.JobOfferId;
+import com.antharos.joboffer.domain.candidate.valueobject.CandidateId;
+import com.antharos.joboffer.domain.candidate.valueobject.Name;
+import com.antharos.joboffer.domain.candidate.valueobject.PersonalEmail;
+import com.antharos.joboffer.domain.candidate.valueobject.Surname;
+import com.antharos.joboffer.domain.joboffer.valueobject.JobOfferId;
 import java.util.List;
 import java.util.UUID;
 import org.mapstruct.Mapper;

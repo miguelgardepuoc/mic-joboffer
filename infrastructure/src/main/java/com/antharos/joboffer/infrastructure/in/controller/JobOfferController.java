@@ -1,15 +1,15 @@
 package com.antharos.joboffer.infrastructure.in.controller;
 
-import com.antharos.joboffer.application.create.AddJobOfferCommand;
-import com.antharos.joboffer.application.create.AddJobOfferCommandHandler;
-import com.antharos.joboffer.application.delete.WithdrawJobOfferCommand;
-import com.antharos.joboffer.application.delete.WithdrawJobOfferCommandHandler;
-import com.antharos.joboffer.application.find.FindJobOfferQuery;
-import com.antharos.joboffer.application.find.FindJobOfferQueryHandler;
-import com.antharos.joboffer.application.find.FindJobOffersQuery;
-import com.antharos.joboffer.application.find.FindJobOffersQueryHandler;
-import com.antharos.joboffer.application.update.UpdateJobOfferCommand;
-import com.antharos.joboffer.application.update.UpdateJobOfferCommandHandler;
+import com.antharos.joboffer.application.commands.joboffer.add.AddJobOfferCommand;
+import com.antharos.joboffer.application.commands.joboffer.add.AddJobOfferCommandHandler;
+import com.antharos.joboffer.application.commands.joboffer.update.UpdateJobOfferCommand;
+import com.antharos.joboffer.application.commands.joboffer.update.UpdateJobOfferCommandHandler;
+import com.antharos.joboffer.application.commands.joboffer.withdraw.WithdrawJobOfferCommand;
+import com.antharos.joboffer.application.commands.joboffer.withdraw.WithdrawJobOfferCommandHandler;
+import com.antharos.joboffer.application.queries.joboffer.FindJobOfferQuery;
+import com.antharos.joboffer.application.queries.joboffer.FindJobOfferQueryHandler;
+import com.antharos.joboffer.application.queries.joboffer.FindJobOffersQuery;
+import com.antharos.joboffer.application.queries.joboffer.FindJobOffersQueryHandler;
 import com.antharos.joboffer.infrastructure.in.dto.joboffer.*;
 import com.antharos.joboffer.infrastructure.in.util.AuditorUtils;
 import com.antharos.joboffer.infrastructure.security.ManagementOnly;

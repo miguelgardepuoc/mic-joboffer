@@ -3,6 +3,7 @@ package com.antharos.joboffer.infrastructure.out.repository.candidate;
 import com.antharos.joboffer.domain.candidate.CandidateStatus;
 import com.antharos.joboffer.infrastructure.out.repository.joboffer.JobOfferEntity;
 import jakarta.persistence.*;
+import java.time.LocalDate;
 import java.util.*;
 import lombok.*;
 import org.hibernate.annotations.JdbcType;
@@ -49,16 +50,21 @@ public class CandidateEntity {
   private String createdBy;
 
   @Column(name = "created_at", nullable = false)
-  private Date createdAt;
+  private LocalDate createdAt;
 
   @Column(name = "last_modified_by")
   private String lastModifiedBy;
 
   @Column(name = "last_modified_at")
-  private Date lastModifiedAt;
+  private LocalDate lastModifiedAt;
 
   @PrePersist
   protected void onCreate() {
-    createdAt = new Date();
+    createdAt = LocalDate.now();
+  }
+
+  @PreUpdate
+  protected void onUpdate() {
+    lastModifiedAt = LocalDate.now();
   }
 }

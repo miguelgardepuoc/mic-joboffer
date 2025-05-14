@@ -1,7 +1,7 @@
 package com.antharos.joboffer.infrastructure.out.repository.joboffer;
 
 import com.antharos.joboffer.domain.joboffer.JobOffer;
-import com.antharos.joboffer.domain.joboffer.JobOfferId;
+import com.antharos.joboffer.domain.joboffer.valueobject.JobOfferId;
 import java.util.UUID;
 import org.springframework.stereotype.Component;
 

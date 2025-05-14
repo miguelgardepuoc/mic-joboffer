@@ -1,10 +1,10 @@
 package com.antharos.joboffer.infrastructure.out.repository.candidate;
 
 import com.antharos.joboffer.domain.candidate.Candidate;
-import com.antharos.joboffer.domain.candidate.CandidateId;
-import com.antharos.joboffer.domain.candidate.PersonalEmail;
 import com.antharos.joboffer.domain.candidate.repository.CandidateRepository;
-import com.antharos.joboffer.domain.joboffer.JobOfferId;
+import com.antharos.joboffer.domain.candidate.valueobject.CandidateId;
+import com.antharos.joboffer.domain.candidate.valueobject.PersonalEmail;
+import com.antharos.joboffer.domain.joboffer.valueobject.JobOfferId;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

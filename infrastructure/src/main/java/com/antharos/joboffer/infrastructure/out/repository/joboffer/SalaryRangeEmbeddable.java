@@ -1,6 +1,6 @@
 package com.antharos.joboffer.infrastructure.out.repository.joboffer;
 
-import com.antharos.joboffer.domain.joboffer.SalaryRange;
+import com.antharos.joboffer.domain.joboffer.valueobject.SalaryRange;
 import jakarta.persistence.Embeddable;
 import java.math.BigDecimal;
 

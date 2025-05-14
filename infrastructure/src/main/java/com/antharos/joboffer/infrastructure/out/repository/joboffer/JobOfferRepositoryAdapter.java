@@ -1,8 +1,8 @@
 package com.antharos.joboffer.infrastructure.out.repository.joboffer;
 
 import com.antharos.joboffer.domain.joboffer.JobOffer;
-import com.antharos.joboffer.domain.joboffer.JobOfferId;
 import com.antharos.joboffer.domain.joboffer.repository.JobOfferRepository;
+import com.antharos.joboffer.domain.joboffer.valueobject.JobOfferId;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

@@ -2,6 +2,7 @@ package com.antharos.joboffer.infrastructure.out.repository.joboffer;
 
 import com.antharos.joboffer.infrastructure.out.repository.candidate.CandidateEntity;
 import jakarta.persistence.*;
+import java.time.LocalDate;
 import java.util.*;
 import lombok.*;
 
@@ -39,18 +40,28 @@ public class JobOfferEntity {
   private String createdBy;
 
   @Column(name = "created_at", nullable = false)
-  private Date createdAt;
+  private LocalDate createdAt;
 
   @Column(name = "last_modified_by")
   private String lastModifiedBy;
 
   @Column(name = "last_modified_at")
-  private Date lastModifiedAt;
+  private LocalDate lastModifiedAt;
 
   @OneToMany(mappedBy = "jobOffer", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<CandidateEntity> candidates = new ArrayList<>();
 
   public JobOfferEntity(UUID id) {
     this.id = id;
+  }
+
+  @PrePersist
+  protected void onCreate() {
+    createdAt = LocalDate.now();
+  }
+
+  @PreUpdate
+  protected void onUpdate() {
+    lastModifiedAt = LocalDate.now();
   }
 }

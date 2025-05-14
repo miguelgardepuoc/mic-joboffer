@@ -1,7 +1,9 @@
 package com.antharos.joboffer.domain.joboffer;
 
 import com.antharos.joboffer.domain.globalexceptions.ConflictException;
-import java.util.Date;
+import com.antharos.joboffer.domain.joboffer.valueobject.JobOfferId;
+import com.antharos.joboffer.domain.joboffer.valueobject.SalaryRange;
+import java.time.LocalDate;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -28,11 +30,11 @@ public class JobOffer {
 
   private String createdBy;
 
-  private Date createdAt;
+  private LocalDate createdAt;
 
   private String lastModifiedBy;
 
-  private Date lastModifiedAt;
+  private LocalDate lastModifiedAt;
 
   public static JobOffer create(
       JobOfferId id,
@@ -51,7 +53,7 @@ public class JobOffer {
         requirement,
         true,
         createdBy,
-        new Date(),
+        LocalDate.now(),
         null,
         null);
   }
@@ -70,7 +72,6 @@ public class JobOffer {
     this.remote = remote;
     this.requirement = requirement;
     this.lastModifiedBy = lastModifiedBy;
-    this.lastModifiedAt = new Date();
   }
 
   public void withdraw(String lastModifiedBy) {

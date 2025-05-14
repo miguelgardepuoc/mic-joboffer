@@ -1,7 +1,7 @@
 package com.antharos.joboffer.infrastructure.in.event;
 
-import com.antharos.joboffer.application.update.UpdateCandidateFullNameCommand;
-import com.antharos.joboffer.application.update.UpdateCandidateFullNameCommandHandler;
+import com.antharos.joboffer.application.commands.candidate.updatefullname.UpdateCandidateFullNameCommand;
+import com.antharos.joboffer.application.commands.candidate.updatefullname.UpdateCandidateFullNameCommandHandler;
 import com.antharos.joboffer.infrastructure.in.event.model.EventMapper;
 import com.antharos.joboffer.infrastructure.in.event.model.NameInfo;
 import jakarta.jms.MessageListener;
