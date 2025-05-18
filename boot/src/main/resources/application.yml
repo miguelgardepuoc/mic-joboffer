@@ -11,9 +11,9 @@ spring:
     servlet:
       path: /job-offer
   datasource:
-    url: jdbc:postgresql://localhost:5432/JOB_OFFER
-    username: myuser
-    password: mypassword
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/JOB_OFFER}
+    username: ${SPRING_DATASOURCE_URL:myuser}
+    password: ${SPRING_DATASOURCE_URL:mypassword}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
