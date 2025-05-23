@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://joboffer.postgres.database.azure.com:5432/postgres
+producer:
+  event:
+    host: antharos.servicebus.windows.net
+    port: 6616
+    user: RootManageSharedAccessKey
+  topic:
+    name: job-offer
+consumer:
+  event:
+    host: antharos.servicebus.windows.net
+    port: 6616
+    user: RootManageSharedAccessKey
+  topic:
+    name: aiintegrations
+  subscription:
+    name: joboffer

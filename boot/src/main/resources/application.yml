@@ -11,9 +11,9 @@ spring:
     servlet:
       path: /job-offer
   datasource:
-    url: jdbc:postgresql://joboffer.postgres.database.azure.com:5432/postgres
-    username: antharosadmin
-    password: "@passw0rd"
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/JOB_OFFER}
+    username: ${SPRING_DATASOURCE_URL:myuser}
+    password: ${SPRING_DATASOURCE_URL:mypassword}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
@@ -38,22 +38,22 @@ spring:
     password: ${SPRING_JMS_PASSWORD}
 producer:
   event:
-    host: antharos.servicebus.windows.net
-    port: 6616
-    user: RootManageSharedAccessKey
-    password: "/wMNU/hS3WDsPAxtZiJs9oiA8aqRaElaY+ASbL0sHC0="
+    host: localhost
+    port: 6612
+    user: admin
+    password: admin
   topic:
-    name: job-offer
+    name: job-offer.candidate
 consumer:
   event:
-    host: antharos.servicebus.windows.net
-    port: 6616
-    user: RootManageSharedAccessKey
-    password: "/wMNU/hS3WDsPAxtZiJs9oiA8aqRaElaY+ASbL0sHC0="
+    host: localhost
+    port: 6613
+    user: admin
+    password: admin
   topic:
-    name: aiintegrations
+    name: aiintegrations.processed-asset
   subscription:
-    name: joboffer
+    name: job-offers
 security:
   jwt:
     secret-key: 3cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b
