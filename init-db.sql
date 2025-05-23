@@ -142,32 +142,4 @@ VALUES (
      '2025-04-06',
      null,
      null
- ),
- (
-     '3f3a01b3-d6d7-41b3-b6fc-0a87d8d431c4',
-     '23f8785e-efce-48fc-9dcd-0141ea777fed',
-     'Buscamos un Senior Machine Learning Engineer con experiencia en la implementación de modelos predictivos y en el diseño de arquitecturas de aprendizaje automático. Este rol será clave en la creación de soluciones basadas en IA que impacten directamente en los productos de la empresa. Necesitamos a alguien con conocimientos avanzados en deep learning, NLP y visión computacional.',
-     100000,
-     130000,
-     75,
-     'Experiencia en machine learning y deep learning; dominio de frameworks como TensorFlow, PyTorch, o Keras; experiencia en el manejo de grandes volúmenes de datos; conocimientos avanzados en Python y R; capacidad para implementar y optimizar modelos de ML en producción',
-     true,
-     'admin',
-     '2025-04-06',
-     null,
-     null
- ),
- (
-     '3f3a01b3-d6d7-41b2-b6fc-0a87d8d431c5',
-     'e513050a-a90a-4d3c-b820-113b9e098e52',
-     'Estamos buscando un Tech Lead con sólida experiencia técnica y habilidades de liderazgo. Serás responsable de dirigir un equipo de desarrollo, coordinar el diseño y la implementación de soluciones de software, y asegurar la calidad del código. Este puesto requiere un enfoque en la entrega de valor mediante la colaboración entre equipos y la mejora continua de procesos.',
-     80000,
-     110000,
-     100,
-     'Experiencia como líder técnico o senior en equipos de desarrollo; conocimientos en arquitecturas de microservicios; dominio de lenguajes como Java, Python o C#; experiencia con metodologías ágiles; capacidad para mentorizar y guiar equipos técnicos; habilidades excepcionales de comunicación',
-     true,
-     'admin',
-     '2025-04-06',
-     null,
-     null
  );

@@ -1,18 +1,22 @@
 spring:
   datasource:
     url: jdbc:postgresql://joboffer.postgres.database.azure.com:5432/postgres
+    username: antharosadmin
+    password: "@passw0rd"
 producer:
   event:
-    host: antharos.servicebus.windows.net
+    host: https://antharos.servicebus.windows.net/joboffer
     port: 6616
     user: RootManageSharedAccessKey
+    password: "/wMNU/hS3WDsPAxtZiJs9oiA8aqRaElaY+ASbL0sHC0="
   topic:
-    name: job-offer
+    name: joboffer
 consumer:
   event:
-    host: antharos.servicebus.windows.net
+    host: https://antharos.servicebus.windows.net/joboffer
     port: 6616
     user: RootManageSharedAccessKey
+    password: "/wMNU/hS3WDsPAxtZiJs9oiA8aqRaElaY+ASbL0sHC0="
   topic:
     name: aiintegrations
   subscription:
