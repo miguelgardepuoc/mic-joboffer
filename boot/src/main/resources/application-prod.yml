@@ -1,16 +1,16 @@
 spring:
   datasource:
     url: jdbc:postgresql://joboffer.postgres.database.azure.com:5432/postgres
-    username: antharosadmin
-    password: "@passw0rd"
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 producer:
   event:
-    connection-string: Endpoint=sb://antharos.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=/wMNU/hS3WDsPAxtZiJs9oiA8aqRaElaY+ASbL0sHC0=
+    connection-string: ${EVENT_CONNECTION_STRING}
   topic:
     name: joboffer
 consumer:
   event:
-    connection-string: Endpoint=sb://antharos.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=/wMNU/hS3WDsPAxtZiJs9oiA8aqRaElaY+ASbL0sHC0=
+    connection-string: ${EVENT_CONNECTION_STRING}
   topic:
     name: aiintegrations
   subscription:
